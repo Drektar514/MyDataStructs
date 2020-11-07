@@ -37,14 +37,14 @@ namespace DataStructures
             {
                 IncreaseLenght();
             }
-                int[] tempArray = new int[_array.Length];
-                for (int i = 0; i < Lenght; i++)
-                {
-                    tempArray[i + 1] = _array[i];
-                }
-                tempArray[0] = value;
-                _array = tempArray;
-                Lenght++;
+            int[] tempArray = new int[_array.Length];
+            for (int i = 0; i < Lenght; i++)
+            {
+                tempArray[i + 1] = _array[i];
+            }
+            tempArray[0] = value;
+            _array = tempArray;
+            Lenght++;
         }
 
         public void AddElByIndex(int value, int index)
@@ -54,18 +54,18 @@ namespace DataStructures
                 IncreaseLenght();
             }
 
-                int[] tempArray = new int[_array.Length];
-                for (int i = 0; i < index; i++)
-                {
-                    tempArray[i] = _array[i];
-                }
-                for (int i = index; i < Lenght; i++)
-                {
-                    tempArray[i + 1] = _array[i];
-                }
-                tempArray[index] = value;
-                _array = tempArray;
-                Lenght++;
+            int[] tempArray = new int[_array.Length];
+            for (int i = 0; i < index; i++)
+            {
+                tempArray[i] = _array[i];
+            }
+            for (int i = index; i < Lenght; i++)
+            {
+                tempArray[i + 1] = _array[i];
+            }
+            tempArray[index] = value;
+            _array = tempArray;
+            Lenght++;
         }
 
         public void Delete()
@@ -74,18 +74,61 @@ namespace DataStructures
             {
                 throw new Exception("Can't delete nothing");
             }
-            else if(_TrueLenght > Lenght-1)
+            else if (_TrueLenght > Lenght - 1)
             {
                 DecreaseLength();
             }
 
-                int[] tempArray = new int[_array.Length];
-                for (int i = 0; i < Lenght; i++)
-                {
-                    tempArray[i] = _array[i];
-                }
-                _array = tempArray;
-                Lenght--;
+            int[] tempArray = new int[_array.Length];
+            for (int i = 0; i < Lenght - 1; i++)
+            {
+                tempArray[i] = _array[i];
+            }
+            _array = tempArray;
+            Lenght--;
+        }
+
+        public void DeleteFirst()
+        {
+            if (Lenght <= 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            else if (_TrueLenght > Lenght - 1)
+            {
+                DecreaseLength();
+            }
+
+            int[] tempArray = new int[_TrueLenght];
+            for (int i = 0; i < Lenght; i++)
+            {
+                tempArray[i] = _array[i + 1];
+            }
+            _array = tempArray;
+            Lenght--;
+        }
+
+        public void DeleteByIndex(int index)
+        {
+            if (Lenght <= 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            else if (_TrueLenght > Lenght - 1)
+            {
+                DecreaseLength();
+            }
+            int[] tempArray = new int[_TrueLenght];
+            for (int i = 0; i < index; i++)
+            {
+                tempArray[i] = _array[i];
+            }
+            for (int i = index+1; i < Lenght; i++)
+            {
+                tempArray[i - 1] = _array[i];
+            }
+            _array = tempArray;
+            Lenght--;
         }
 
         public void ShowList()
@@ -110,9 +153,9 @@ namespace DataStructures
         private void DecreaseLength(int number = 1)
         {
             int newLenght = _TrueLenght;
-            while (newLenght*0.75 >= Lenght)
+            while (newLenght * 0.75 >= Lenght)
             {
-                newLenght = (int)(newLenght-number);
+                newLenght = (int)(newLenght - number);
             }
             int[] tempArray = new int[newLenght];
             Array.Copy(_array, tempArray, newLenght);

@@ -18,6 +18,8 @@ namespace MyDataScructConsole
             myList.AddFirst(78);
             myList.AddFirst(66);
             myList.AddElByIndex(75, 1);
+            myList.DeleteFirst();
+            myList.DeleteByIndex(2);
             myList.ShowList();
         }
     }
