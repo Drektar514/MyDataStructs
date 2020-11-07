@@ -1,0 +1,9 @@
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.deps.json
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csprojAssemblyReference.cache
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfoInputs.cache
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfo.cs
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csproj.CoreCompileInputs.cache
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.pdb

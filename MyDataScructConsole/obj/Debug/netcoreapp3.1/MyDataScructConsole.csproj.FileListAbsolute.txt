@@ -1,0 +1,16 @@
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.exe
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.deps.json
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.runtimeconfig.json
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.runtimeconfig.dev.json
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.dll
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\MyDataScructConsole.pdb
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\bin\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.csprojAssemblyReference.cache
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.AssemblyInfoInputs.cache
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.AssemblyInfo.cs
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.csproj.CoreCompileInputs.cache
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.csproj.CopyComplete
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.dll
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.pdb
+C:\Users\Сергей\source\repos\MyDataStructures\MyDataScructConsole\obj\Debug\netcoreapp3.1\MyDataScructConsole.genruntimeconfig.cache
