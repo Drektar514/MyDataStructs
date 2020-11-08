@@ -131,6 +131,177 @@ namespace DataStructures
             Lenght--;
         }
 
+        public void DeleteByValueFirst(int value)
+        {
+           int index = FindIndexByNumber(value);
+            DeleteByIndex(index);
+        }
+
+        public void DeleteByValueAll(int value)
+        {
+            int valueCount = 0;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if(_array[i] == value)
+                {
+                    valueCount++;
+                }
+            }
+            while (valueCount != 0)
+            {
+                for (int i = 0; i < Lenght; i++)
+                {
+                    if(_array[i] == value)
+                    {
+                        DeleteByIndex(i);
+                        valueCount--;
+                    }
+                }
+            }
+        }
+
+        public int ReturnLength()
+        {
+            return _TrueLenght;
+        }
+
+        public int AccessByIndex(int index)
+        {
+            if(index < 0 || index > _array.Length)
+            {
+                throw new Exception("Index outside the array ");
+            }
+            int number = _array[index];
+            return number;
+        }
+
+        public int FindIndexByNumber(int number)
+        {
+            int index;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if(_array[i] == number)
+                {
+                    index = i;
+                    return index;
+                }
+            }
+            throw new Exception("Number is not found");
+        }
+
+        public int FindMaxEl()
+        {
+            int max = _array[0];
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (max < _array[i])
+                {
+                    max = _array[i];
+                }
+            }
+            return max;
+        }
+
+        public int FindMinEl()
+        {
+            int min = _array[0];
+            for (int i = 0; i < Lenght; i++)
+            {
+                if(min > _array[i])
+                {
+                    min = _array[i];
+                }
+            }
+            return min;
+        }
+
+        public int FindIndexMinEl()
+        {
+            int index = 0;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if(_array[index] > _array[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        public int FindIndexMaxEl()
+        {
+            int index = 0;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (_array[index] < _array[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+
+        }
+
+        public void SortAscending()
+        {
+            for (int i = Lenght; i > 0; i--)
+            {
+                int temp;
+                for (int j = 0; j < i - 1; j++)
+                {
+                    int max = _array[j];
+                    int min = _array[j + 1];
+                    if (max > min)
+                    {
+                        temp = _array[j];
+                        _array[j] = _array[j + 1];
+                        _array[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        public void SortDescending()
+        {
+            for (int i = 0; i < Lenght; i++)
+            {
+                int max = _array[i];
+                int index = i;
+                for (int j = i; j < Lenght; j++)
+                {
+                    if (max < _array[j])
+                    {
+                        max = _array[j];
+                        index = j;
+                    }
+                }
+                int temp = _array[i];
+                _array[i] = max;
+                _array[index] = temp;
+            }
+        }
+        public void ChangeValueByIndex(int index, int value)
+        {
+            if (index >= 0 && index < _array.Length)
+            {
+                _array[index] = value;
+            }
+            else
+            {
+                throw new Exception("Index outside the array");
+            }
+        }
+
+        public void ReversArray()
+        {
+            int[] tempArray = new int[_array.Length];
+            for (int i = 1; i <= Lenght ; i++)
+            {
+                tempArray[i-1] = _array[Lenght -i];
+            }
+            _array = tempArray;
+        }
+
         public void ShowList()
         {
             for (int i = 0; i < _array.Length; i++)
