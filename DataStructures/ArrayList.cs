@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DataStructures
 {
@@ -443,6 +444,19 @@ namespace DataStructures
             int[] tempArray = new int[newLenght];
             Array.Copy(_array, tempArray, newLenght);
             _array = tempArray;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ArrayList list &&
+                   Lenght == list.Lenght &&
+                   EqualityComparer<int[]>.Default.Equals(_array, list._array) &&
+                   _TrueLenght == list._TrueLenght;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Lenght, _array, _TrueLenght);
         }
     }
 }
