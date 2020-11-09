@@ -31,7 +31,7 @@ namespace DataStructures
         public ArrayList(int[] array)
         {
             _array = array;
-            Lenght = array.Length - 1;
+            Lenght = array.Length;
         }
 
         public void Add(int value)
@@ -50,10 +50,18 @@ namespace DataStructures
             {
                 IncreaseLenght();
             }
-            for (int i = 0; i <array.Length ; i++)
+            int[] tempArray = new int[_TrueLenght];
+            for (int i = 0; i < Lenght; i++)
             {
-                Add(array[i]);
+                tempArray[i] = _array[i];
             }
+            for (int i = 0; i < array.Length; i++)
+            {
+                tempArray[Lenght + i] = array[i];
+                
+            }
+            Lenght += array.Length;
+            _array = tempArray;
         }
         
         public void AddArrayToStart(int[] array)
@@ -62,10 +70,17 @@ namespace DataStructures
             {
                 IncreaseLenght();
             }
-            for (int i = array.Length-1; i >= 0; i--)
+            int[] tempArray = new int[_TrueLenght];
+            for (int i = 0; i < Lenght; i++)
             {
-                AddFirst(array[i]);
+                tempArray[array.Length + i] = _array[i];
             }
+            for (int i = 0; i < array.Length; i++)
+            {
+                tempArray[i] = array[i];
+            }
+            Lenght += array.Length;
+            _array = tempArray;
         }
 
         public void AddArrayByIndex(int[] array, int index)
@@ -74,10 +89,21 @@ namespace DataStructures
             {
                 IncreaseLenght();
             }
-            for(int i = array.Length -1; i>=0; i--)
+            int[] tempArray = new int[_TrueLenght];
+            for (int i = 0; i < index; i++)
             {
-                AddElByIndex(array[i], index);
+                tempArray[i] = _array[i];
             }
+            for (int i = 0; i < array.Length; i++)
+            {
+                tempArray[index + i] = array[i];
+            }
+            for (int i =index + array.Length ; i <array.Length + Lenght ; i++)
+            {
+                tempArray[i] = _array[i - array.Length];
+            }
+            Lenght += array.Length;
+            _array = tempArray;
         }
 
         public void AddFirst(int value)

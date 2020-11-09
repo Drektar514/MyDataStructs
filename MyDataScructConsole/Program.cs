@@ -67,7 +67,7 @@ namespace MyDataScructConsole
             myList.AddArrayToStart(new int[] { 10, 20, 30, 40 });
             myList.ShowList();
             Console.WriteLine();
-            myList.AddArrayByIndex(new int[] { 75, 76, 77, 78 }, 4);
+            myList.AddArrayByIndex(new int[] { 55, 56, 57, 58 }, 4);
             myList.ShowList();
             Console.WriteLine();
             myList.DeleteFromEndCountElement(6);
@@ -79,6 +79,7 @@ namespace MyDataScructConsole
             myList.DeleteByIndexCountElement(3, 2);
             myList.ShowList();
             Console.WriteLine();
+           
 
         }
     }
