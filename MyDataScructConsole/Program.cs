@@ -61,6 +61,24 @@ namespace MyDataScructConsole
             myList.DeleteByValueAll(99);
             myList.ShowList();
             Console.WriteLine();
+            myList.AddArray(new int[] { 9, 1, 2, 3, 4, 5 });
+            myList.ShowList();
+            Console.WriteLine();
+            myList.AddArrayToStart(new int[] { 10, 20, 30, 40 });
+            myList.ShowList();
+            Console.WriteLine();
+            myList.AddArrayByIndex(new int[] { 75, 76, 77, 78 }, 4);
+            myList.ShowList();
+            Console.WriteLine();
+            myList.DeleteFromEndCountElement(6);
+            myList.ShowList();
+            Console.WriteLine();
+            myList.DeleteFromStartCountElement(4);
+            myList.ShowList();
+            Console.WriteLine();
+            myList.DeleteByIndexCountElement(3, 2);
+            myList.ShowList();
+            Console.WriteLine();
 
         }
     }

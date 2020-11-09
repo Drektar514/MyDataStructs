@@ -21,6 +21,18 @@ namespace DataStructures
             Lenght = 0;
         }
 
+        public ArrayList(int length)
+        {
+            _array = new int[length];
+            Lenght = 0;
+        }
+
+        public ArrayList(int[] array)
+        {
+            _array = array;
+            Lenght = array.Length - 1;
+        }
+
         public void Add(int value)
         {
             if (_TrueLenght <= Lenght)
@@ -29,6 +41,42 @@ namespace DataStructures
             }
             _array[Lenght] = value;
             Lenght++;
+        }
+
+        public void AddArray(int[] array)
+        {
+            while (array.Length + Lenght > _array.Length)
+            {
+                IncreaseLenght();
+            }
+            for (int i = 0; i <array.Length ; i++)
+            {
+                Add(array[i]);
+            }
+        }
+        
+        public void AddArrayToStart(int[] array)
+        {
+            while (array.Length + Lenght > _array.Length)
+            {
+                IncreaseLenght();
+            }
+            for (int i = array.Length-1; i >= 0; i--)
+            {
+                AddFirst(array[i]);
+            }
+        }
+
+        public void AddArrayByIndex(int[] array, int index)
+        {
+            while (array.Length + Lenght > _array.Length)
+            {
+                IncreaseLenght();
+            }
+            for(int i = array.Length -1; i>=0; i--)
+            {
+                AddElByIndex(array[i], index);
+            }
         }
 
         public void AddFirst(int value)
@@ -86,6 +134,69 @@ namespace DataStructures
             }
             _array = tempArray;
             Lenght--;
+        }
+
+        public void DeleteFromEndCountElement(int count)
+        {
+            if (Lenght <= 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            else if (_TrueLenght > Lenght - 1)
+            {
+                DecreaseLength();
+            }
+            if (count <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while (count != 0)
+            {
+                Delete();
+                count--;
+            }
+        }
+
+        public void DeleteFromStartCountElement(int count)
+        {
+            if (Lenght <= 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            else if (_TrueLenght > Lenght - 1)
+            {
+                DecreaseLength();
+            }
+            if (count <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while (count != 0)
+            {
+                DeleteFirst();
+                count--;
+            }
+        }
+
+        public void DeleteByIndexCountElement(int count,int index)
+        {
+            if (Lenght <= 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            else if (_TrueLenght > Lenght - 1)
+            {
+                DecreaseLength();
+            }
+            if (count <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while(count != 0)
+            {
+                DeleteByIndex(index);
+                count--;
+            }
         }
 
         public void DeleteFirst()
@@ -312,13 +423,14 @@ namespace DataStructures
         private void IncreaseLenght(int number = 1)
         {
             int newLenght = _TrueLenght;
-            while (newLenght <= Lenght + number)
+            while (newLenght <= _array.Length + number)
             {
                 newLenght = (int)(newLenght * 1.33 + 1);
             }
 
             int[] newArray = new int[newLenght];
             Array.Copy(_array, newArray, _TrueLenght);
+            
             _array = newArray;
         }
         private void DecreaseLength(int number = 1)
