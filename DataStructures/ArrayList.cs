@@ -30,7 +30,8 @@ namespace DataStructures
 
         public ArrayList(int[] array)
         {
-            _array = array;
+            int[] _array = new int[(int)(array.Length * 1.33)];
+            Array.Copy(_array, array, array.Length);
             Lenght = array.Length;
         }
 
@@ -438,12 +439,12 @@ namespace DataStructures
 
         public void Revers()
         {
-            int[] tempArray = new int[_array.Length];
-            for (int i = 1; i <= Lenght ; i++)
+            for (int i = 0; i < Lenght/2 ; i++)
             {
-                tempArray[i-1] = _array[Lenght -i];
+                int a = _array[i];
+                _array[i] = _array[Lenght - 1 - i];
+                _array[Lenght - 1 - i] = a;
             }
-            _array = tempArray;
         }
 
         public void ShowList()
