@@ -44,7 +44,7 @@ namespace DataStructures
             Lenght++;
         }
 
-        public void AddArray(int[] array)
+        public void Add(int[] array)
         {
             while (array.Length + Lenght > _array.Length)
             {
@@ -64,7 +64,7 @@ namespace DataStructures
             _array = tempArray;
         }
         
-        public void AddArrayToStart(int[] array)
+        public void AddFirst(int[] array)
         {
             while (array.Length + Lenght > _array.Length)
             {
@@ -83,7 +83,7 @@ namespace DataStructures
             _array = tempArray;
         }
 
-        public void AddArrayByIndex(int[] array, int index)
+        public void AddByIndex(int[] array, int index)
         {
             while (array.Length + Lenght > _array.Length)
             {
@@ -122,7 +122,7 @@ namespace DataStructures
             Lenght++;
         }
 
-        public void AddElByIndex(int value, int index)
+        public void AddByIndex(int value, int index)
         {
             if (_TrueLenght <= Lenght)
             {
@@ -163,7 +163,7 @@ namespace DataStructures
             Lenght--;
         }
 
-        public void DeleteFromEndCountElement(int count)
+        public void Delete(int count)
         {
             if (Lenght <= 0)
             {
@@ -184,7 +184,7 @@ namespace DataStructures
             }
         }
 
-        public void DeleteFromStartCountElement(int count)
+        public void DeleteFirst(int count)
         {
             if (Lenght <= 0)
             {
@@ -205,7 +205,7 @@ namespace DataStructures
             }
         }
 
-        public void DeleteByIndexCountElement(int count,int index)
+        public void DeleteByIndex(int count,int index)
         {
             if (Lenght <= 0)
             {
@@ -275,7 +275,7 @@ namespace DataStructures
             DeleteByIndex(index);
         }
 
-        public void DeleteByValueAll(int value)
+        public void DeleteByValue(int value)
         {
             int valueCount = 0;
             for (int i = 0; i < Lenght; i++)
@@ -327,7 +327,7 @@ namespace DataStructures
             throw new Exception("Number is not found");
         }
 
-        public int FindMaxEl()
+        public int FindMax()
         {
             int max = _array[0];
             for (int i = 0; i < Lenght; i++)
@@ -340,7 +340,7 @@ namespace DataStructures
             return max;
         }
 
-        public int FindMinEl()
+        public int FindMin()
         {
             int min = _array[0];
             for (int i = 0; i < Lenght; i++)
@@ -353,7 +353,7 @@ namespace DataStructures
             return min;
         }
 
-        public int FindIndexMinEl()
+        public int FindMinIndex()
         {
             int index = 0;
             for (int i = 0; i < Lenght; i++)
@@ -366,7 +366,7 @@ namespace DataStructures
             return index;
         }
 
-        public int FindIndexMaxEl()
+        public int FindMaxIndex()
         {
             int index = 0;
             for (int i = 0; i < Lenght; i++)
@@ -430,7 +430,7 @@ namespace DataStructures
             }
         }
 
-        public void ReversArray()
+        public void Revers()
         {
             int[] tempArray = new int[_array.Length];
             for (int i = 1; i <= Lenght ; i++)
