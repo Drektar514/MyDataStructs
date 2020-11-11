@@ -31,13 +31,16 @@ namespace DataStructures
         public ArrayList(int[] array)
         {
             int[] _array = new int[(int)(array.Length * 1.33)];
-            Array.Copy(_array, array, array.Length);
+            for (int i = 0; i < array.Length; i++)
+            {
+                _array[i] = array[i];
+            }
             Lenght = array.Length;
         }
 
         public void Add(int value)
         {
-            if (_TrueLenght <= Lenght)
+            if (Lenght >= _array.Length)
             {
                 IncreaseLenght();
             }
@@ -51,18 +54,11 @@ namespace DataStructures
             {
                 IncreaseLenght();
             }
-            int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < Lenght; i++)
+            for (int i = 0; i <array.Length ; i++)
             {
-                tempArray[i] = _array[i];
-            }
-            for (int i = 0; i < array.Length; i++)
-            {
-                tempArray[Lenght + i] = array[i];
-                
+                _array[i + Lenght] = array[i];
             }
             Lenght += array.Length;
-            _array = tempArray;
         }
         
         public void AddFirst(int[] array)
@@ -482,7 +478,8 @@ namespace DataStructures
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
-            if(Lenght!= arrayList.Lenght)
+
+            if (Lenght != arrayList.Lenght)
             {
                 return false;
             }
@@ -490,7 +487,7 @@ namespace DataStructures
             {
                 for (int i = 0; i < Lenght; i++)
                 {
-                    if(_array[i] != arrayList._array[i])
+                    if (_array[i] != arrayList._array[i])
                     {
                         return false;
                     }
