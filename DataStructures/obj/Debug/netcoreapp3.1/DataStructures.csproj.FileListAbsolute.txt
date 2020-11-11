@@ -7,3 +7,11 @@ C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\net
 C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csproj.CoreCompileInputs.cache
 C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.dll
 C:\Users\Сергей\source\repos\MyDataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.deps.json
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csprojAssemblyReference.cache
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfo.cs
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\User\source\repos\MyDataStructs\MyDataStructs\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.pdb

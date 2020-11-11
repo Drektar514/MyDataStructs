@@ -66,21 +66,19 @@ namespace DataStructures
         
         public void AddFirst(int[] array)
         {
-            while (array.Length + Lenght > _array.Length)
+            while (array.Length + Lenght >= _array.Length)
             {
                 IncreaseLenght();
             }
-            int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < Lenght; i++)
+            for (int i = Lenght-1; i >= 0 ; i--)
             {
-                tempArray[array.Length + i] = _array[i];
+                _array[i + array.Length] = _array[i];
             }
             for (int i = 0; i < array.Length; i++)
             {
-                tempArray[i] = array[i];
+                _array[i] = array[i];
             }
             Lenght += array.Length;
-            _array = tempArray;
         }
 
         public void AddByIndex(int[] array, int index)
@@ -194,9 +192,9 @@ namespace DataStructures
             {
                 DecreaseLength();
             }
-            if (count <= 0)
+            if (count <= 0 || count >= Lenght)
             {
-                throw new Exception("Please enter a positive number");
+                throw new IndexOutOfRangeException();
             }
             while (count != 0)
             {
@@ -215,9 +213,13 @@ namespace DataStructures
             {
                 DecreaseLength();
             }
-            if (count <= 0)
+            if (count < 0 || count > Lenght)
             {
-                throw new Exception("Please enter a positive number");
+                throw new IndexOutOfRangeException();
+            }
+            else if(count > Lenght - index)
+            {
+                throw new Exception("Delete count bigger then length");
             }
             while(count != 0)
             {
@@ -238,7 +240,7 @@ namespace DataStructures
             }
 
             int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < Lenght; i++)
+            for (int i = 0; i < Lenght-1; i++)
             {
                 tempArray[i] = _array[i + 1];
             }
@@ -255,6 +257,10 @@ namespace DataStructures
             else if (_TrueLenght > Lenght - 1)
             {
                 DecreaseLength();
+            }
+            if(index< 0 || index >= Lenght)
+            {
+                throw new IndexOutOfRangeException();
             }
             int[] tempArray = new int[_TrueLenght];
             for (int i = 0; i < index; i++)
@@ -474,15 +480,22 @@ namespace DataStructures
 
         public override bool Equals(object obj)
         {
-            return obj is ArrayList list &&
-                   Lenght == list.Lenght &&
-                   EqualityComparer<int[]>.Default.Equals(_array, list._array) &&
-                   _TrueLenght == list._TrueLenght;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Lenght, _array, _TrueLenght);
+            ArrayList arrayList = (ArrayList)obj;
+            if(Lenght!= arrayList.Lenght)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < Lenght; i++)
+                {
+                    if(_array[i] != arrayList._array[i])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

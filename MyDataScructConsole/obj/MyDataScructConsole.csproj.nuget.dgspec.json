@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\MyDataScructConsole\\MyDataScructConsole.csproj": {}
+    "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\MyDataScructConsole\\MyDataScructConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\DataStructures.csproj": {
+    "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\DataStructures.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\DataStructures.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\DataStructures.csproj",
         "projectName": "DataStructures",
-        "projectPath": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\DataStructures.csproj",
-        "packagesPath": "C:\\Users\\Сергей\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\DataStructures.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Сергей\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,24 +52,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\MyDataScructConsole\\MyDataScructConsole.csproj": {
+    "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\MyDataScructConsole\\MyDataScructConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\MyDataScructConsole\\MyDataScructConsole.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\MyDataScructConsole\\MyDataScructConsole.csproj",
         "projectName": "MyDataScructConsole",
-        "projectPath": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\MyDataScructConsole\\MyDataScructConsole.csproj",
-        "packagesPath": "C:\\Users\\Сергей\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\MyDataScructConsole\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\MyDataScructConsole\\MyDataScructConsole.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\MyDataScructConsole\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Сергей\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\DataStructures.csproj": {
-                "projectPath": "C:\\Users\\Сергей\\source\\repos\\MyDataStructures\\DataStructures\\DataStructures.csproj"
+              "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\DataStructures.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\MyDataStructs\\MyDataStructs\\DataStructures\\DataStructures.csproj"
               }
             }
           }
@@ -114,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
