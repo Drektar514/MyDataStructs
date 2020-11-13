@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures", "DataStructures\DataStructures.csproj", "{57909532-9AA5-49AE-B34F-03B397B8632D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDataScructConsole", "MyDataScructConsole\MyDataScructConsole.csproj", "{77A061F7-93FC-4A79-A864-F831F9BD63C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDataStructuresTests", "MyDataStructuresTests\MyDataStructuresTests.csproj", "{D86ED700-D242-428E-AF70-F04108617737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDataStructuresTests", "MyDataStructuresTests\MyDataStructuresTests.csproj", "{D86ED700-D242-428E-AF70-F04108617737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{57909532-9AA5-49AE-B34F-03B397B8632D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57909532-9AA5-49AE-B34F-03B397B8632D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57909532-9AA5-49AE-B34F-03B397B8632D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77A061F7-93FC-4A79-A864-F831F9BD63C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77A061F7-93FC-4A79-A864-F831F9BD63C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77A061F7-93FC-4A79-A864-F831F9BD63C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77A061F7-93FC-4A79-A864-F831F9BD63C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D86ED700-D242-428E-AF70-F04108617737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D86ED700-D242-428E-AF70-F04108617737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D86ED700-D242-428E-AF70-F04108617737}.Release|Any CPU.ActiveCfg = Release|Any CPU

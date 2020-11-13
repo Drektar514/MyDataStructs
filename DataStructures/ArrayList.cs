@@ -30,7 +30,7 @@ namespace DataStructures
 
         public ArrayList(int[] array)
         {
-            int[] _array = new int[(int)(array.Length * 1.33)];
+            _array = new int[(int)(array.Length * 1.33)];
             for (int i = 0; i < array.Length; i++)
             {
                 _array[i] = array[i];
@@ -40,236 +40,78 @@ namespace DataStructures
 
         public void Add(int value)
         {
-            if (Lenght >= _array.Length)
-            {
-                IncreaseLenght();
-            }
-            _array[Lenght] = value;
-            Lenght++;
+            Move('+',Lenght);
+            _array[Lenght-1] = value;
         }
 
         public void Add(int[] array)
         {
-            while (array.Length + Lenght > _array.Length)
+            Move('+', Lenght, array.Length);
+            for (int i = 0; i < array.Length; i++)
             {
-                IncreaseLenght();
+                _array[i + Lenght-array.Length] = array[i];
             }
-            for (int i = 0; i <array.Length ; i++)
-            {
-                _array[i + Lenght] = array[i];
-            }
-            Lenght += array.Length;
         }
         
+        public void AddFirst(int value)
+        {
+            Move('+');
+            _array[0] = value;
+        }
+
         public void AddFirst(int[] array)
         {
-            while (array.Length + Lenght >= _array.Length)
-            {
-                IncreaseLenght();
-            }
-            for (int i = Lenght-1; i >= 0 ; i--)
-            {
-                _array[i + array.Length] = _array[i];
-            }
+
+            Move('+', arLenght : array.Length);
             for (int i = 0; i < array.Length; i++)
             {
                 _array[i] = array[i];
             }
-            Lenght += array.Length;
-        }
-
-        public void AddByIndex(int[] array, int index)
-        {
-            while (array.Length + Lenght > _array.Length)
-            {
-                IncreaseLenght();
-            }
-            int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < index; i++)
-            {
-                tempArray[i] = _array[i];
-            }
-            for (int i = 0; i < array.Length; i++)
-            {
-                tempArray[index + i] = array[i];
-            }
-            for (int i =index + array.Length ; i <array.Length + Lenght ; i++)
-            {
-                tempArray[i] = _array[i - array.Length];
-            }
-            Lenght += array.Length;
-            _array = tempArray;
-        }
-
-        public void AddFirst(int value)
-        {
-            if (_TrueLenght <= Lenght)
-            {
-                IncreaseLenght();
-            }
-            int[] tempArray = new int[_array.Length];
-            for (int i = 0; i < Lenght; i++)
-            {
-                tempArray[i + 1] = _array[i];
-            }
-            tempArray[0] = value;
-            _array = tempArray;
-            Lenght++;
         }
 
         public void AddByIndex(int value, int index)
         {
-            if (_TrueLenght <= Lenght)
-            {
-                IncreaseLenght();
-            }
+            Move('+', index);
+            _array[index] = value;
+        }
 
-            int[] tempArray = new int[_array.Length];
-            for (int i = 0; i < index; i++)
+        public void AddByIndex(int[] array, int index)
+        {
+            Move('+', index, array.Length);
+            for (int  i = 0;  i < array.Length;  i++)
             {
-                tempArray[i] = _array[i];
+                _array[index + i] = array[i];
             }
-            for (int i = index; i < Lenght; i++)
-            {
-                tempArray[i + 1] = _array[i];
-            }
-            tempArray[index] = value;
-            _array = tempArray;
-            Lenght++;
         }
 
         public void Delete()
         {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
-
-            int[] tempArray = new int[_array.Length];
-            for (int i = 0; i < Lenght - 1; i++)
-            {
-                tempArray[i] = _array[i];
-            }
-            _array = tempArray;
-            Lenght--;
+            Move('-',Lenght);
         }
 
         public void Delete(int count)
         {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
-            if (count <= 0)
-            {
-                throw new Exception("Please enter a positive number");
-            }
-            while (count != 0)
-            {
-                Delete();
-                count--;
-            }
-        }
-
-        public void DeleteFirst(int count)
-        {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
-            if (count <= 0 || count >= Lenght)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            while (count != 0)
-            {
-                DeleteFirst();
-                count--;
-            }
-        }
-
-        public void DeleteByIndex(int count,int index)
-        {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
-            if (count < 0 || count > Lenght)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            else if(count > Lenght - index)
-            {
-                throw new Exception("Delete count bigger then length");
-            }
-            while(count != 0)
-            {
-                DeleteByIndex(index);
-                count--;
-            }
+            Move('-', Lenght, count);
         }
 
         public void DeleteFirst()
         {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
+            Move('-');
+        }
 
-            int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < Lenght-1; i++)
-            {
-                tempArray[i] = _array[i + 1];
-            }
-            _array = tempArray;
-            Lenght--;
+        public void DeleteFirst(int count)
+        {
+            Move('-', arLenght : count);
         }
 
         public void DeleteByIndex(int index)
         {
-            if (Lenght <= 0)
-            {
-                throw new Exception("Can't delete nothing");
-            }
-            else if (_TrueLenght > Lenght - 1)
-            {
-                DecreaseLength();
-            }
-            if(index< 0 || index >= Lenght)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            int[] tempArray = new int[_TrueLenght];
-            for (int i = 0; i < index; i++)
-            {
-                tempArray[i] = _array[i];
-            }
-            for (int i = index+1; i < Lenght; i++)
-            {
-                tempArray[i - 1] = _array[i];
-            }
-            _array = tempArray;
-            Lenght--;
+            Move('-', index);
+        }
+
+        public void DeleteByIndex(int count,int index)
+        {
+            Move('-', index, count);
         }
 
         public void DeleteByValueFirst(int value)
@@ -310,7 +152,7 @@ namespace DataStructures
         {
             if(index < 0 || index > _array.Length)
             {
-                throw new Exception("Index outside the array ");
+                throw new IndexOutOfRangeException();
             }
             int number = _array[index];
             return number;
@@ -443,11 +285,48 @@ namespace DataStructures
             }
         }
 
-        public void ShowList()
+        private void Move(char pointer, int index = 0, int arLenght = 1)
         {
-            for (int i = 0; i < _array.Length; i++)
+            if (pointer == '+')
             {
-                Console.Write(_array[i] + " ");
+                while (Lenght + arLenght >= _array.Length)
+                {
+                    IncreaseLenght();
+                }
+                for (int i = arLenght; i > 0; i--)
+                {
+                    for (int j = Lenght-1; j >=index; j--)
+                    {
+                        _array[j + 1] = _array[j];
+                    }
+                    _array[index] = 0;
+                    Lenght++;
+                }
+            }
+            else if(pointer == '-')
+            {
+                if (Lenght <= 0)
+                {
+                    throw new Exception("Can't delete nothing");
+                }
+                if(index < 0 || index > Lenght)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                for (int i = arLenght; i > 0 ; i--)
+                {
+                    for (int j = index; j < Lenght-1; j++)
+                    {
+                        _array[j] = _array[j + 1];
+                    }
+                    _array[Lenght - 1] = 0;
+                    Lenght--;
+                }
+                if(_TrueLenght > Lenght - 1)
+                {
+                    DecreaseLength();
+                }
             }
         }
         private void IncreaseLenght(int number = 1)
@@ -465,8 +344,8 @@ namespace DataStructures
         }
         private void DecreaseLength(int number = 1)
         {
-            int newLenght = _TrueLenght;
-            while (newLenght * 0.75 >= Lenght)
+            int newLenght = _array.Length;
+            while (newLenght * 0.75 > Lenght)
             {
                 newLenght = (int)(newLenght - number);
             }
@@ -474,7 +353,6 @@ namespace DataStructures
             Array.Copy(_array, tempArray, newLenght);
             _array = tempArray;
         }
-
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
@@ -494,6 +372,10 @@ namespace DataStructures
                 }
             }
             return true;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

@@ -19,8 +19,8 @@ namespace MyDataStructuresTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 10, 15, 20 }, new int[] { 10, 15, 20 })]
-        [TestCase(new int[] { 10, 20, 30, 40 }, new int[] { 10, 20, 30, 40, 50, 60, 70 }, new int[] { 50, 60, 70 })]
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 10 }, new int[] { 10 })]
+        [TestCase(new int[] { 10, 20, 30, 40 }, new int[] { 10, 20, 30, 40, 50, 60 }, new int[] { 50, 60 })]
         [TestCase(new int[] { -10, 20, -30, 40 }, new int[] { -10, 20, -30, 40, -50, 60, -70 }, new int[] { -50, 60, -70 })]
         [TestCase(new int[] { }, new int[] { }, new int[] { })]
 
@@ -84,7 +84,7 @@ namespace MyDataStructuresTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4})]
         [TestCase(new int[] { 3, 2, 1, 0 }, new int[] { 3, 2, 1 })]
         [TestCase(new int[] { 123, 321, 147, 741, 987 }, new int[] { 123, 321, 147, 741 })]
 
@@ -97,8 +97,8 @@ namespace MyDataStructuresTests
         }
 
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { }, 5)]
-        [TestCase(new int[] { 3, 2, 1, 0 }, new int[] { 3, 2, 1, }, 1)]
-        [TestCase(new int[] { 123, 321, 147, 741, 987 }, new int[] { 123, 321, }, 3)]
+        [TestCase(new int[] { 3, 2, 1, 0 }, new int[] { 3, 2, 1 }, 1)]
+        [TestCase(new int[] { 123, 321, 147, 741, 987 }, new int[] { 123, 321}, 3)]
 
         public void DeleteTest(int[] array, int[] expArray, int count)
         {
@@ -161,9 +161,81 @@ namespace MyDataStructuresTests
         [TestCase(new int[] { 1, 1, 1, 4, 5 }, new int[] { 1, 1, 4, 5 }, 1)]
         [TestCase(new int[] { 7, 6, 5, 4, 5 }, new int[] { 7, 6, 4, 5 }, 5)]
 
+        public void DeleteByValueFirstTest(int[] array, int[] expArray, int value)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.DeleteByValueFirst(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 4, 5 }, 3)]
+        [TestCase(new int[] { 1, 1, 1, 4, 5 }, new int[] {4, 5}, 1)]
+        [TestCase(new int[] { 7, 6, 5, 4, 5 }, new int[] { 7, 6, 4 }, 5)]
+
         public void DeleteByValueTest(int[] array, int[] expArray, int value)
         {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.DeleteByValue(value);
+            Assert.AreEqual(expected, actual);
+        }
 
+        [TestCase(new int[] { 1, 2, 3, 4, 5 },4,5)]
+        [TestCase(new int[] { 95, 21, 35},0,95)]
+        [TestCase(new int[] {150,200,305,123,546,789},3,123)]
+
+        public void AccessByIndex(int[] array,int index,int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.AccessByIndex(index);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1, 0 })]
+        [TestCase(new int[] { 0, 1, 2, 3, 4}, new int[] {4, 3, 2, 1, 0 })]
+        [TestCase(new int[] {99,98,97}, new int[] {97,98,99})]
+
+        public void ReversTest(int[] array,int[] expArray)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.Revers();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 },0,0)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 },5,5)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 },3,3)]
+        [TestCase(new int[] { 99,98,97,94,92,90 },98,1)]
+
+        public void FindIndexByNumberTest(int[] array,int number, int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.FindIndexByNumber(number);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 2, 5, 8, 6, 4, 1, 90 }, 90)]
+        [TestCase(new int[] { 0, 2, 5, 95, 6, 4, 1, 90 }, 95)]
+        [TestCase(new int[] {0}, 0)]
+
+        public void FindMaxTest(int[] array, int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.FindMax();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 2, 5, 8, 6, 4, 1, 90 }, 0)]
+        [TestCase(new int[] { 2, 5, 95, 6, 4, 1, 90 }, 1)]
+        [TestCase(new int[] { 90,91 }, 90)]
+
+        public void FindMinTest(int[] array, int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.FindMin();
+            Assert.AreEqual(expected, actual);
         }
     }
 }
