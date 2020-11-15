@@ -237,5 +237,108 @@ namespace MyDataStructuresTests
             int actual = arrayList.FindMin();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 2, 5, 8, 6, 4, 1, 90, 0 }, 7)]
+        [TestCase(new int[] { 2, 5, 95, 6, 4, 1, 90 }, 5)]
+        [TestCase(new int[] { 90, 91 }, 0)]
+        [TestCase(new int[] {}, 0)]
+
+        public void FindMinIndexTest(int[] array, int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.FindMinIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 2, 5, 8, 6, 4, 1, 90 }, 7)]
+        [TestCase(new int[] { 0, 2, 5, 95, 6, 4, 1, 90 }, 3)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] {}, 0)]
+
+        public void FindMaxIndexTest(int[] array, int expected)
+        {
+            ArrayList arrayList = new ArrayList(array);
+            int actual = arrayList.FindMaxIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 3, 2, 5, 4, 6, 7, 1, 0 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 9, 8, 7, 6, 5 }, new int[] { 5, 6, 7, 8, 9 })]
+        [TestCase(new int[] { int.MaxValue, int.MinValue }, new int[] { int.MinValue, int.MaxValue })]
+
+        public void SortAscendingTest(int[] array, int[] expArray)
+        {   
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.SortAscending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 3, 2, 5, 4, 6, 7, 1, 0 }, new int[] { 7,6,5,4,3,2,1,0 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 9, 8, 7, 6, 5 }, new int[] { 9,8,7,6,5 })]
+        [TestCase(new int[] { 0,10,20,30,40,50,60,70,80,90 }, new int[] {90,80,70,60,50,40,30,20,10,0})]
+        [TestCase(new int[] {int.MinValue, int.MaxValue, int.MinValue }, new int[] {int.MaxValue, int.MinValue, int.MinValue })]
+
+        public void SortDescendingTest(int[] array, int[] expArray)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.SortDescending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 3, 2, 5, 4, 6, 7, 1, 0 }, new int[] { 0, 2, 5, 4, 6, 7, 1, 0 }, 0,0)]
+        [TestCase(new int[] { 9, 8, 7, 6, 5 }, new int[] { 9, 8, 7, 6, 30 },4,30)]
+        [TestCase(new int[] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 }, new int[] { 0, 10, 20, 30, 40, 99, 60, 70, 80, 90 },5,99)]
+        [TestCase(new int[] { int.MinValue, int.MaxValue, int.MinValue }, new int[] { int.MinValue, 0, int.MinValue },1,0)]
+
+        public void ChangeValueByIndexTest(int[] array, int[] expArray, int index, int value)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            actual.ChangeValueByIndex(index, value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] {1,2,3}, new int[] {0,1,2,3 },-1,0)]
+        [TestCase(new int[] {1,2,3}, new int[] {1,2,3,0,0,0,0,5 },7,5)]
+        [TestCase(new int[] {}, new int[] {99},0,99)]
+
+        public void NegativeChangeValueByIndexTest(int[] array, int[] expArray, int index, int value)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            try
+            { 
+            actual.ChangeValueByIndex(index, value);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] { 1, 2, 3 }, new int[] {1, 2, 3 },5)]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] {1, 2, 3 },-1)]
+        [TestCase(new int[] {}, new int[] {},0)]
+
+        public void NegativeDeleteTest(int[] array, int[] expArray, int count)
+        {
+            ArrayList expected = new ArrayList(expArray);
+            ArrayList actual = new ArrayList(array);
+            try
+            {
+                actual.Delete(count);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
     }
 }

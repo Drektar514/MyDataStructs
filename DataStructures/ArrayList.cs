@@ -271,7 +271,7 @@ namespace DataStructures
             }
             else
             {
-                throw new Exception("Index outside the array");
+                throw new IndexOutOfRangeException();
             }
         }
 
@@ -312,6 +312,10 @@ namespace DataStructures
                 if(index < 0 || index > Lenght)
                 {
                     throw new IndexOutOfRangeException();
+                }
+                if(arLenght < 0)
+                {
+                    throw new Exception("Length can't be negative ");
                 }
 
                 for (int i = arLenght; i > 0 ; i--)
