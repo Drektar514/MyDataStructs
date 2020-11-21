@@ -156,7 +156,7 @@ namespace NUnitTestProject1
 
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 3, new int[] { 1, 2, 3, })]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 6, new int[] { })]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, new int[] { 1, 2, 3, 4,})]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, new int[] { 1, 2, 3, 4, })]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 1, new int[] { 1, 2, 3, 4, 5 })]
 
         public void DeleteCountTest(int[] array, int count, int[] expArray)
@@ -167,10 +167,10 @@ namespace NUnitTestProject1
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 0, new int[] { 1, 2, 3, 4, 5,6 })]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, -1, new int[] { 1, 2, 3, 4, 5,6 })]
-        [TestCase(new int[] {},1, new int[] {})]
-        [TestCase(new int[] {0},2, new int[] {})]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 0, new int[] { 1, 2, 3, 4, 5, 6 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, -1, new int[] { 1, 2, 3, 4, 5, 6 })]
+        [TestCase(new int[] { }, 1, new int[] { })]
+        [TestCase(new int[] { 0 }, 2, new int[] { })]
 
         public void NegativeDeleteCountTest(int[] array, int count, int[] expArray)
         {
@@ -186,5 +186,168 @@ namespace NUnitTestProject1
             }
             Assert.Fail();
         }
+
+        [TestCase(new int[] { 0, 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { 0 }, new int[] { })]
+        [TestCase(new int[] { 5, 6, 7, 8, 9, 7, 1, 3, 5, 7, 89, 2 }, new int[] { 6, 7, 8, 9, 7, 1, 3, 5, 7, 89, 2 })]
+
+        public void DeleteFirstTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.DeleteFirst();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { }, new int[] { })]
+
+        public void NegativeDeleteFirstTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.DeleteFirst();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3 }, 2, new int[] { 2, 3 })]
+        [TestCase(new int[] { 0 }, 1, new int[] { })]
+        [TestCase(new int[] { 5, 6, 7, 8, 9, 7, 1, 3, 5, 7, }, 10, new int[] { })]
+
+        public void DeleteFirstTest(int[] array, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.DeleteFirst(count);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0 }, 2, new int[] { })]
+        [TestCase(new int[] { 0,2,5 }, 4, new int[] { })]
+        [TestCase(new int[] {}, 0, new int[] { })]
+
+        public void NegativeDeleteFirstTest(int[] array, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.DeleteFirst(count);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] {1,2,3,4,5 },2,new int[] {1,2,4,5})]
+        [TestCase(new int[] {0,1,2,3,4,5,6,7,8,9},0,new int[] {1,2,3,4,5,6,7,8,9})]
+        [TestCase(new int[] {0,1,2,3,4,5,6,7,8,9},9,new int[] {0,1,2,3,4,5,6,7,8})]
+
+        public void DeleteByIndexTest(int[] array, int index, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.DeleteByIndex(index);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1,3, new int[] { 1,5 })]
+        [TestCase(new int[] { 0,1, 2, 3, 4, 5,6,7,8,9 },0,9,  new int[] { 9 })]
+        [TestCase(new int[] { 0,1, 2, 3, 4, 5,6,7,8,9 },9,1,  new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 })]
+
+        public void DeleteByIndexTest(int[] array, int index, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.DeleteByIndex(index,count);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0 },0, 2, new int[] { })]
+        [TestCase(new int[] { 0, 2, 5 },1, 4, new int[] { })]
+        [TestCase(new int[] { }, 2,3, new int[] { })]
+        [TestCase(new int[] { 0, 2, 5 },4,1, new int[] { })]
+
+        public void NegativeDeleteByIndexTest(int[] array,int index, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.DeleteByIndex(index,count);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] { 35 }, 35, 0)]
+        [TestCase(new int[] { 35,15,20 }, 15, 1)]
+        [TestCase(new int[] { 35,15,20 }, 20, 2)]
+
+        public void ShowIndexByValueTest(int[] array, int value, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.ShowIndexByValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 35 }, 34)]
+        [TestCase(new int[] { 35,21,45,78 }, 48)]
+        [TestCase(new int[] { 35 }, 38)]
+
+        public void NegativeShowIndexByValueTest(int[] array, int value)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            try
+            {
+                int actual = linkedList.ShowIndexByValue(value);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] {0,1,2,3,4,5 }, 4,4)]
+        [TestCase(new int[] {0,1,2,3,4,5 }, 5,5)]
+        [TestCase(new int[] {10,502,3,4,},0,10)]
+        [TestCase(new int[] {10,502,3,4,},1,502)]
+
+        public void ShowValueByIndexTest(int[] array, int index, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.ShowValueByIndex(index);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, -1)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 6)]
+
+        public void NegativeShowValueByIndexTest(int[] array, int index)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            try
+            {
+                int actual = linkedList.ShowValueByIndex(index);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
     }
 }

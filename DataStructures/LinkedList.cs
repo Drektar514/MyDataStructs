@@ -192,9 +192,9 @@ namespace DataStructures
 
         public void Delete()
         {
-            if(Length - 1 < 0)
+            if(Length <= 0)
             {
-                throw new Exception("Can't delete nothing");
+                throw new NullReferenceException();
             }
             Node tmp = _root;
             for (int i = 0; i < Length - 1; i++)
@@ -211,7 +211,7 @@ namespace DataStructures
             {
                 throw new Exception("Count can't be less 1");
             }
-            if (Length - count < 0)
+            if (Length < count)
             {
                 throw new Exception("Count bigger than List");
             }
@@ -222,6 +222,136 @@ namespace DataStructures
             }
             tmp.Next = null;
             Length -= count;
+        }
+
+        public void DeleteFirst()
+        {
+            if (Length <= 0)
+            {
+                throw new NullReferenceException();
+            }
+            Node tmp = _root;
+            _root = tmp.Next;
+            tmp.Next = null;
+            Length--;
+        }
+
+        public void DeleteFirst(int count)
+        {
+            if (Length <= 0)
+            {
+                throw new NullReferenceException();
+            }
+            if(Length< count)
+            {
+                throw new Exception("Count bigger than List");
+            }
+            Node tmp;
+
+            for (int i = 0; i < count; i++)
+            {
+                tmp = _root;
+                _root = tmp.Next;
+                tmp.Next = null;
+            }
+                Length -= count;
+        }
+
+        public void DeleteByIndex(int index)
+        {
+            if(index == 0)
+            {
+                DeleteFirst();
+            }
+            else if(index == Length - 1)
+            {
+                Delete();
+            }
+            else
+            {
+                Node tmp = _root;
+                for (int i = 0; i != index-1; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next = tmp.Next.Next;
+                Length--;
+            }
+        }
+
+        public void DeleteByIndex(int index,int count)
+        {
+            if (count <= 0)
+            {
+                throw new Exception("Count can't be less 1");
+            }
+            if (Length < count)
+            {
+                throw new Exception("Count bigger than List");
+            }
+
+            if (index == 0)
+            {
+                DeleteFirst(count);
+            }
+            else if (index == Length - 1)
+            {
+                Delete();
+            }
+            else
+            {
+                Node tmp = _root;
+                for (int i = 0; i != index-1; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                for (int i = 0; i != count; i++)
+                {
+                    tmp.Next = tmp.Next.Next;
+                }
+                Length -= count;
+            }
+        }
+
+        public int ShowIndexByValue(int value)
+        {
+            bool check = false;
+            int index = 0;
+            Node tmp = _root;
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value == value)
+                {
+                    index = i;
+                    check = true;
+                    break;
+                }
+                tmp = tmp.Next;
+            }
+            if (check)
+            {
+                return index;
+            }
+            else
+            {
+                throw new Exception("Index not found");
+            }
+        }
+
+        public int ShowValueByIndex(int index)
+        {
+            if (index < 0 || index >= Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            int value;
+            Node tmp = _root;
+            for (int i = 0; i != index; i++)
+            {
+                tmp = tmp.Next;
+            }
+            value = tmp.Value;
+            return value;
         }
 
         public override bool Equals(object obj)
