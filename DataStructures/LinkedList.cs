@@ -163,6 +163,7 @@ namespace DataStructures
                 _root = null;
             }
         }
+
         public void AddByIndex(int index, int value)
         {
             if (index < 0 || index > Length)
@@ -187,6 +188,40 @@ namespace DataStructures
                 _root = tmp;
             }
             Length++;
+        }
+
+        public void Delete()
+        {
+            if(Length - 1 < 0)
+            {
+                throw new Exception("Can't delete nothing");
+            }
+            Node tmp = _root;
+            for (int i = 0; i < Length - 1; i++)
+            {
+                tmp = tmp.Next;
+            }
+            tmp.Next = null;
+            Length--;
+        }
+
+        public void Delete(int count)
+        {
+            if(count <= 0)
+            {
+                throw new Exception("Count can't be less 1");
+            }
+            if (Length - count < 0)
+            {
+                throw new Exception("Count bigger than List");
+            }
+            Node tmp = _root;
+            for (int i = 0; i < Length - count; i++)
+            {
+                tmp = tmp.Next;
+            }
+            tmp.Next = null;
+            Length -= count;
         }
 
         public override bool Equals(object obj)

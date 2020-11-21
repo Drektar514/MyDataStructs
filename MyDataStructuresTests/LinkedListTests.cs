@@ -122,5 +122,69 @@ namespace NUnitTestProject1
             actual.AddFirst(addArray);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 1, 2, 3, 4, 5 })]
+        [TestCase(new int[] { 1 }, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, new int[] { 1 })]
+
+        public void DeleteTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.Delete();
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestCase(new int[] { }, new int[] { })]
+
+
+        public void NegativeDeleteTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.Delete();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 3, new int[] { 1, 2, 3, })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 6, new int[] { })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, new int[] { 1, 2, 3, 4,})]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 1, new int[] { 1, 2, 3, 4, 5 })]
+
+        public void DeleteCountTest(int[] array, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.Delete(count);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 0, new int[] { 1, 2, 3, 4, 5,6 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, -1, new int[] { 1, 2, 3, 4, 5,6 })]
+        [TestCase(new int[] {},1, new int[] {})]
+        [TestCase(new int[] {0},2, new int[] {})]
+
+        public void NegativeDeleteCountTest(int[] array, int count, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.Delete(count);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
     }
 }
