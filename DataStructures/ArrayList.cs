@@ -287,47 +287,40 @@ namespace DataStructures
 
         private void Move(char pointer, int index = 0, int arLenght = 1)
         {
+            while (Lenght + arLenght >= _array.Length)
+            {
+                IncreaseLenght();
+            }
             if (pointer == '+')
             {
-                while (Lenght + arLenght >= _array.Length)
+                for (int i = Lenght - 1; i >= index; i--)
                 {
-                    IncreaseLenght();
+                    _array[i + arLenght] = _array[i];
                 }
-                for (int i = arLenght; i > 0; i--)
-                {
-                    for (int j = Lenght-1; j >=index; j--)
-                    {
-                        _array[j + 1] = _array[j];
-                    }
-                    _array[index] = 0;
-                    Lenght++;
-                }
+                Lenght += arLenght;
             }
-            else if(pointer == '-')
+            else if (pointer == '-')
             {
                 if (Lenght <= 0)
                 {
                     throw new Exception("Can't delete nothing");
                 }
-                if(index < 0 || index > Lenght)
+                if (index < 0 || index > Lenght)
                 {
                     throw new IndexOutOfRangeException();
                 }
-                if(arLenght < 0)
+                if (arLenght < 0)
                 {
                     throw new Exception("Length can't be negative ");
                 }
 
-                for (int i = arLenght; i > 0 ; i--)
+                for (int j = index; j < Lenght - 1; j++)
                 {
-                    for (int j = index; j < Lenght-1; j++)
-                    {
-                        _array[j] = _array[j + 1];
-                    }
-                    _array[Lenght - 1] = 0;
-                    Lenght--;
+                    _array[j] = _array[j + arLenght];
+                    _array[j + arLenght] = 0;
                 }
-                if(_TrueLenght > Lenght - 1)
+                Lenght -= arLenght;
+                if (_TrueLenght > Lenght - 1)
                 {
                     DecreaseLength();
                 }

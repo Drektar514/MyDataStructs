@@ -59,7 +59,7 @@ namespace DataStructures
 
         public void Add(int value)
         {
-            if(Length == 0)
+            if (Length == 0)
             {
                 _root = new Node(value);
             }
@@ -86,7 +86,7 @@ namespace DataStructures
                 {
                     _root = new Node(array[0]);
                     crnt = _root;
-                    for (int i = 1; i <array.Length; i++)
+                    for (int i = 1; i < array.Length; i++)
                     {
                         crnt.Next = new Node(array[i]);
                         crnt = crnt.Next;
@@ -116,7 +116,7 @@ namespace DataStructures
 
         public void AddFirst(int value)
         {
-            if(Length == 0)
+            if (Length == 0)
             {
                 _root = new Node(value);
             }
@@ -192,7 +192,7 @@ namespace DataStructures
 
         public void Delete()
         {
-            if(Length <= 0)
+            if (Length <= 0)
             {
                 throw new NullReferenceException();
             }
@@ -207,7 +207,7 @@ namespace DataStructures
 
         public void Delete(int count)
         {
-            if(count <= 0)
+            if (count <= 0)
             {
                 throw new Exception("Count can't be less 1");
             }
@@ -242,7 +242,7 @@ namespace DataStructures
             {
                 throw new NullReferenceException();
             }
-            if(Length< count)
+            if (Length < count)
             {
                 throw new Exception("Count bigger than List");
             }
@@ -254,23 +254,23 @@ namespace DataStructures
                 _root = tmp.Next;
                 tmp.Next = null;
             }
-                Length -= count;
+            Length -= count;
         }
 
         public void DeleteByIndex(int index)
         {
-            if(index == 0)
+            if (index == 0)
             {
                 DeleteFirst();
             }
-            else if(index == Length - 1)
+            else if (index == Length - 1)
             {
                 Delete();
             }
             else
             {
                 Node tmp = _root;
-                for (int i = 0; i != index-1; i++)
+                for (int i = 0; i != index - 1; i++)
                 {
                     tmp = tmp.Next;
                 }
@@ -279,7 +279,7 @@ namespace DataStructures
             }
         }
 
-        public void DeleteByIndex(int index,int count)
+        public void DeleteByIndex(int index, int count)
         {
             if (count <= 0)
             {
@@ -301,7 +301,7 @@ namespace DataStructures
             else
             {
                 Node tmp = _root;
-                for (int i = 0; i != index-1; i++)
+                for (int i = 0; i != index - 1; i++)
                 {
                     tmp = tmp.Next;
                 }
@@ -313,7 +313,7 @@ namespace DataStructures
             }
         }
 
-        public int ShowIndexByValue(int value)
+        public int GetIndexByValue(int value)
         {
             bool check = false;
             int index = 0;
@@ -338,7 +338,7 @@ namespace DataStructures
             }
         }
 
-        public int ShowValueByIndex(int index)
+        public int GetValueByIndex(int index)
         {
             if (index < 0 || index >= Length)
             {
@@ -352,6 +352,130 @@ namespace DataStructures
             }
             value = tmp.Value;
             return value;
+        }
+
+        public void Revers()
+        {
+            Node oldRoot = _root;
+            Node tmp;
+            while (oldRoot.Next != null)
+            {
+                tmp = oldRoot.Next;
+                oldRoot.Next = tmp.Next;
+                tmp.Next = _root;
+                _root = tmp;
+            }
+        }
+
+        public int FindMaxValue()
+        {
+            if (Length > 0)
+            {
+                int value = int.MinValue;
+                Node crnt = _root;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (value < crnt.Value)
+                    {
+                        value = crnt.Value;
+                    }
+                    crnt = crnt.Next;
+                }
+                return value;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public int FindMinValue()
+        {
+            if (Length > 0)
+            {
+                int value = int.MaxValue;
+                Node crnt = _root;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (value > crnt.Value)
+                    {
+                        value = crnt.Value;
+                    }
+                    crnt = crnt.Next;
+                }
+                return value;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public int FindIndexMinValue()
+        {
+            if (Length > 0)
+            {
+                int value = int.MaxValue;
+                int index = 0;
+                Node crnt = _root;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (value > crnt.Value)
+                    {
+                        value = crnt.Value;
+                        index = i;
+                    }
+                    crnt = crnt.Next;
+                }
+                return index;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public int FindIndexMaxValue()
+        {
+            if (Length > 0)
+            {
+                int value = int.MinValue;
+                int index = 0;
+                Node crnt = _root;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (value < crnt.Value)
+                    {
+                        value = crnt.Value;
+                        index = i;
+                    }
+                    crnt = crnt.Next;
+                }
+                return index;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public void SortAscending()
+        {
+            Node crnt = _root;
+            Node tmp;
+            for (int i = 0; i < Length; i++)
+            {
+                for (int j = 0; j < Length; j++)
+                {
+                    if (crnt.Value > crnt.Next.Value)
+                    {
+                        tmp = crnt;
+                        crnt = crnt.Next;
+                        crnt.Next = tmp;
+                    }
+                    crnt = crnt.Next;
+                }
+            }
         }
 
         public override bool Equals(object obj)

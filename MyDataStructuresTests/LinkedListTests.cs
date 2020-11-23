@@ -298,7 +298,7 @@ namespace NUnitTestProject1
         public void ShowIndexByValueTest(int[] array, int value, int expected)
         {
             LinkedList linkedList = new LinkedList(array);
-            int actual = linkedList.ShowIndexByValue(value);
+            int actual = linkedList.GetIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -311,7 +311,7 @@ namespace NUnitTestProject1
             LinkedList linkedList = new LinkedList(array);
             try
             {
-                int actual = linkedList.ShowIndexByValue(value);
+                int actual = linkedList.GetIndexByValue(value);
             }
             catch
             {
@@ -325,10 +325,10 @@ namespace NUnitTestProject1
         [TestCase(new int[] {10,502,3,4,},0,10)]
         [TestCase(new int[] {10,502,3,4,},1,502)]
 
-        public void ShowValueByIndexTest(int[] array, int index, int expected)
+        public void GetValueByIndexTest(int[] array, int index, int expected)
         {
             LinkedList linkedList = new LinkedList(array);
-            int actual = linkedList.ShowValueByIndex(index);
+            int actual = linkedList.GetValueByIndex(index);
             Assert.AreEqual(expected, actual);
         }
 
@@ -340,13 +340,81 @@ namespace NUnitTestProject1
             LinkedList linkedList = new LinkedList(array);
             try
             {
-                int actual = linkedList.ShowValueByIndex(index);
+                int actual = linkedList.GetValueByIndex(index);
             }
             catch
             {
                 Assert.Pass();
             }
             Assert.Fail();
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1, 0 })]
+        [TestCase(new int[] { 0, 5 }, new int[] { 5,0 })]
+        [TestCase(new int[] { 0, 3, 5 }, new int[] { 5, 3, 0 })]
+
+        public void ReversTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.Revers();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 5)]
+        [TestCase(new int[] { 0, 1, 32, 3, 4, 5 }, 32)]
+        [TestCase(new int[] { 99, 1, 32, 3, 4, 5 }, 99)]
+
+        public void FindMaxValueTest(int[] array, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.FindMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 0)]
+        [TestCase(new int[] { 0, 1, -32, 3, 4, 5 }, -32)]
+        [TestCase(new int[] { 0, 1, 32, 3, 4, -99}, -99)]
+
+        public void FindMinValueTest(int[] array, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.FindMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 0)]
+        [TestCase(new int[] { 0, 1, -32, 3, 4, 5 }, 2)]
+        [TestCase(new int[] { 0, 1, 32, 3, 4, -99 }, 5)]
+
+        public void FindIndexMinValueTest(int[] array, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.FindIndexMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 5)]
+        [TestCase(new int[] { 0, 1, 32, 3, 4, 5 }, 2)]
+        [TestCase(new int[] { 99, 1, 32, 3, 4, 5 }, 0)]
+
+        public void FindIndexMaxValueTest(int[] array, int expected)
+        {
+            LinkedList linkedList = new LinkedList(array);
+            int actual = linkedList.FindIndexMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] {0,2,1,4,3,6,5,7,9,8}, new int[] {0,1,2,3,4,5,6,7,8,9})]
+        [TestCase(new int[] {0,10,20,30}, new int[] {0,10,20,30})]
+        [TestCase(new int[] {99,98,97,96,94,95}, new int[] {94,95,96,97,98,99})]
+
+        public void SortAscendingTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.SortAscending();
+            Assert.AreEqual(expected, actual);
         }
 
     }
