@@ -38,6 +38,10 @@ namespace DataStructures
         {
             get
             {
+                if(index<0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
                 Node tmp = _root;
                 for (int i = 0; i < index; i++)
                 {
@@ -48,6 +52,10 @@ namespace DataStructures
 
             set
             {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
                 Node tmp = _root;
                 for (int i = 0; i < index; i++)
                 {
@@ -434,15 +442,23 @@ namespace DataStructures
 
         public void SortAscending()
         {
-            for (int i = 1; i < Length ; i++)
+            for (int i = 1; i < Length; i++)
             {
-            Node crnt = _root;
-                for (int j = 0; j < Length -i; j++)
+                Node previous = _root;
+                Node crnt = _root.Next;
+                while (crnt.Next != null)
                 {
+                    if(_root.Value > _root.Next.Value)
+                    {
+                        SwapFirst(crnt, previous);
+                        continue;
+                    }
                     if (crnt.Value > crnt.Next.Value)
                     {
-                        Swap(crnt, crnt.Next);
+                        Swap(crnt, crnt.Next, previous);
+                        crnt = previous;
                     }
+                    previous = crnt;
                     crnt = crnt.Next;
                 }
             }
@@ -452,13 +468,21 @@ namespace DataStructures
         {
             for (int i = 1; i < Length; i++)
             {
-                Node crnt = _root;
-                for (int j = 0; j < Length - i; j++)
+                Node previous = _root;
+                Node crnt = _root.Next;
+                while (crnt.Next != null)
                 {
+                    if (_root.Value < _root.Next.Value)
+                    {
+                        SwapFirst(crnt, previous);
+                        continue;
+                    }
                     if (crnt.Value < crnt.Next.Value)
                     {
-                        Swap(crnt, crnt.Next);
+                        Swap(crnt, crnt.Next, previous);
+                        crnt = previous;
                     }
+                    previous = crnt;
                     crnt = crnt.Next;
                 }
             }
@@ -481,20 +505,16 @@ namespace DataStructures
         public void RemoveByValueAll(int value)
         {
             Node tmp = _root;
-            while (tmp.Next != null)
+            for (int i = 0; i < Length; i++)
             {
                 if (tmp.Value == value)
                 {
                     tmp = tmp.Next;
-                    RemoveByValueFirst(value);
+                    DeleteByIndex(i);
+                    i--;
                     continue;
                 }
                 tmp = tmp.Next;
-            }
-            if (tmp.Value == value)
-            {
-                tmp = tmp.Next;
-                RemoveByValueFirst(value);
             }
         }
 
@@ -538,11 +558,22 @@ namespace DataStructures
             return base.GetHashCode();
         }
 
-        private void Swap(Node crnt, Node nextCrnt)
+        private void Swap(Node crnt, Node nextCrnt, Node previous)
         {
-            int tmp = crnt.Value;
-            crnt.Value = nextCrnt.Value;
-            nextCrnt.Value = tmp;
+            Node tmp = crnt;
+            crnt = nextCrnt;
+            previous.Next = crnt;
+            tmp.Next = nextCrnt.Next;
+            nextCrnt.Next = tmp;
+        }
+        private void SwapFirst(Node crnt,Node previous)
+        {
+            Node tmp = crnt;
+            crnt = _root;
+            crnt.Next = tmp.Next;
+            _root = tmp;
+            _root.Next = crnt;
+            previous = _root;
         }
         private void CheckError(int count)
         {
