@@ -417,5 +417,40 @@ namespace NUnitTestProject1
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 0, 2, 1, 4, 3, 6, 5, 7, 9, 8 }, new int[] {9,8,7,6,5,4,3,2,1,0 })]
+        [TestCase(new int[] { 0, 10, 20, 30 }, new int[] {30,20,10,0})]
+        [TestCase(new int[] { 99, 98, 97, 96, 94, 95 }, new int[] { 99,98,97,96,95,94 })]
+
+        public void SortDescendingTest(int[] array, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.SortDescending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1,2,3,4,5}, 0, new int[] {1, 2, 3, 4, 5 })]
+        [TestCase(new int[] { 0, 1,2,3,4,5}, 5, new int[] {0,1, 2, 3, 4, })]
+        [TestCase(new int[] { 0, 1,2,3,1,4,5},1, new int[] {0, 2, 3,1, 4, 5 })]
+
+        public void RemoveByValueFirstTest(int[] array, int value, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.RemoveByValueFirst(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 1, 0, 3, 4, 0 }, 0, new int[] { 1, 3, 4,})]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 5, new int[] { 0, 1, 2, 3, 4,})]
+        [TestCase(new int[] { 1, 1, 1, 1, 1, 4, 1 }, 1, new int[] {4})]
+
+        public void RemoveByValueAllTest(int[] array, int value, int[] expArray)
+        {
+            LinkedList expected = new LinkedList(expArray);
+            LinkedList actual = new LinkedList(array);
+            actual.RemoveByValueAll(value);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

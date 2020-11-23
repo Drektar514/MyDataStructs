@@ -192,10 +192,7 @@ namespace DataStructures
 
         public void Delete()
         {
-            if (Length <= 0)
-            {
-                throw new NullReferenceException();
-            }
+            CheckError(Length);
             Node tmp = _root;
             for (int i = 0; i < Length - 1; i++)
             {
@@ -207,14 +204,7 @@ namespace DataStructures
 
         public void Delete(int count)
         {
-            if (count <= 0)
-            {
-                throw new Exception("Count can't be less 1");
-            }
-            if (Length < count)
-            {
-                throw new Exception("Count bigger than List");
-            }
+            CheckError(count);
             Node tmp = _root;
             for (int i = 0; i < Length - count; i++)
             {
@@ -226,10 +216,7 @@ namespace DataStructures
 
         public void DeleteFirst()
         {
-            if (Length <= 0)
-            {
-                throw new NullReferenceException();
-            }
+            CheckError(Length);
             Node tmp = _root;
             _root = tmp.Next;
             tmp.Next = null;
@@ -238,14 +225,7 @@ namespace DataStructures
 
         public void DeleteFirst(int count)
         {
-            if (Length <= 0)
-            {
-                throw new NullReferenceException();
-            }
-            if (Length < count)
-            {
-                throw new Exception("Count bigger than List");
-            }
+            CheckError(count);
             Node tmp;
 
             for (int i = 0; i < count; i++)
@@ -281,14 +261,7 @@ namespace DataStructures
 
         public void DeleteByIndex(int index, int count)
         {
-            if (count <= 0)
-            {
-                throw new Exception("Count can't be less 1");
-            }
-            if (Length < count)
-            {
-                throw new Exception("Count bigger than List");
-            }
+            CheckError(count);
 
             if (index == 0)
             {
@@ -461,20 +434,67 @@ namespace DataStructures
 
         public void SortAscending()
         {
-            Node crnt = _root;
-            Node tmp;
-            for (int i = 0; i < Length; i++)
+            for (int i = 1; i < Length ; i++)
             {
-                for (int j = 0; j < Length; j++)
+            Node crnt = _root;
+                for (int j = 0; j < Length -i; j++)
                 {
                     if (crnt.Value > crnt.Next.Value)
                     {
-                        tmp = crnt;
-                        crnt = crnt.Next;
-                        crnt.Next = tmp;
+                        Swap(crnt, crnt.Next);
                     }
                     crnt = crnt.Next;
                 }
+            }
+        }
+
+        public void SortDescending()
+        {
+            for (int i = 1; i < Length; i++)
+            {
+                Node crnt = _root;
+                for (int j = 0; j < Length - i; j++)
+                {
+                    if (crnt.Value < crnt.Next.Value)
+                    {
+                        Swap(crnt, crnt.Next);
+                    }
+                    crnt = crnt.Next;
+                }
+            }
+        }
+
+        public void RemoveByValueFirst(int value)
+        {
+            Node tmp = _root;
+            for (int i = 0; i < Length; i++)
+            {
+                if(tmp.Value == value)
+                {
+                    DeleteByIndex(i);
+                    break;
+                }
+                tmp = tmp.Next;
+            }
+        }
+
+        public void RemoveByValueAll(int value)
+        {
+            Node tmp = _root;
+            while (tmp.Next != null)
+            {
+                if (tmp.Value == value)
+                {
+                    tmp = tmp.Next;
+                    RemoveByValueFirst(value);
+                    continue;
+                }
+                tmp = tmp.Next;
+            }
+            if (tmp.Value == value)
+            {
+                tmp = tmp.Next;
+                RemoveByValueFirst(value);
             }
         }
 
@@ -516,6 +536,28 @@ namespace DataStructures
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        private void Swap(Node crnt, Node nextCrnt)
+        {
+            int tmp = crnt.Value;
+            crnt.Value = nextCrnt.Value;
+            nextCrnt.Value = tmp;
+        }
+        private void CheckError(int count)
+        {
+            if (Length <= 0)
+            {
+                throw new NullReferenceException();
+            }
+            if (count <= 0)
+            {
+                throw new Exception("Count can't be less 1");
+            }
+            if (Length < count)
+            {
+                throw new Exception("Count bigger than List");
+            }
         }
 
     }
