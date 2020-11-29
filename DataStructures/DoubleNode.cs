@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataStructures.DoubleLL
+namespace DataStructures
 {
     class DoubleNode
     {
