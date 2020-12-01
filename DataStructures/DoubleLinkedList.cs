@@ -127,6 +127,308 @@ namespace DataStructures
             }
         }
 
+        public void AddFirst(int value)
+        {
+
+            DoubleNode crnt = new DoubleNode(value);
+            if (Length != 0)
+            {
+                crnt.Next = _root;
+                _root.Previous = crnt;
+                _root = crnt;
+            }
+            else
+            {
+                _root = crnt;
+                _tail = crnt;
+            }
+                Length++;
+        }
+
+        public void AddFirst(int[] array)
+        {
+            DoubleNode crnt;
+            DoubleNode tmp;
+            DoubleNode oldRoot;
+            if (array.Length > 0)
+            {
+                if (Length != 0)
+                {
+                    oldRoot = _root;
+                    crnt = new DoubleNode(array[0]);
+                    crnt.Next = _root;
+                    _root.Previous = crnt;
+                    _root = crnt;
+                    for (int i = 1; i < array.Length; i++)
+                    {
+                        tmp = new DoubleNode(array[i]);
+                        crnt.Next = tmp;
+                        tmp.Previous = crnt;
+                        crnt = tmp;
+                    }
+                    crnt.Next = oldRoot;
+                    oldRoot.Previous = crnt;
+                }
+                else
+                {
+                    crnt = new DoubleNode(array[0]);
+                    _root = crnt;
+                    for (int i = 1; i < array.Length; i++)
+                    {
+                        tmp = new DoubleNode(array[i]);
+                        crnt.Next = tmp;
+                        tmp.Previous = crnt;
+                        crnt = tmp;
+                    }
+                    _tail = crnt;
+                }
+            }
+            else
+            {
+                _root = null;
+                _tail = null;
+            }
+            Length += array.Length;
+        }
+
+        public void AddByIndex(int index ,int value)
+        {
+            if (index >= 0)
+            {
+                if (index == 0)
+                {
+                    AddFirst(value);
+                }
+                else if (index == Length)
+                {
+                    Add(value);
+                }
+                else
+                {
+                    DoubleNode crnt = _root;
+                    for (int i = 1; i < index; i++)
+                    {
+                        crnt = crnt.Next;
+                    }
+                    DoubleNode tmp = new DoubleNode(value);
+                    tmp.Next = crnt.Next;
+                    tmp.Previous = crnt;
+                    crnt.Next.Previous = tmp;
+                    crnt.Next = tmp;
+                    Length++;
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void AddByIndex(int index, int[] array)
+        {
+            if (index == 0)
+            {
+                AddFirst(array);
+            }
+            else if (index == Length)
+            {
+                Add(array);
+            }
+            else
+            {
+                DoubleNode crnt = _root;
+                DoubleNode oldNext;
+                for (int i = 1; i < index; i++)
+                {
+                    crnt = crnt.Next;
+                }
+                oldNext = crnt.Next;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    DoubleNode tmp = new DoubleNode(array[i]);
+                    crnt.Next = tmp;
+                    tmp.Previous = crnt;
+                    crnt = tmp;
+                }
+                crnt.Next = oldNext;
+                oldNext.Previous = crnt;
+                Length += array.Length;
+            }
+        }
+
+        public void Delete()
+        {
+            if (Length > 1)
+            {
+                _tail = _tail.Previous;
+                _tail.Next = null;
+                Length--;
+            }
+            else if(Length == 1)
+            {
+                _root = null;
+                _tail = null;
+                Length--;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void Delete(int count)
+        {
+            if(count == 1)
+            {
+                Delete();
+            }
+            else if(count > Length || count <= 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    _tail = _tail.Previous;
+                }
+                Length -= count;
+            }
+        }
+
+        public void DeleteFirst()
+        {
+            if (Length > 1)
+            {
+                _root = _root.Next;
+                _root.Previous = null;
+                Length--;
+            }
+            else if (Length == 1)
+            {
+                _root = null;
+                _tail = null;
+                Length--;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void DeleteFirst(int count)
+        {
+            if (count == 1)
+            {
+                DeleteFirst();
+            }
+            else if (count > Length || count <= 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    _root = _root.Next;
+                }
+                Length -= count;
+            }
+        }
+
+        public void DeleteByIndex(int index)
+        {
+            if (index >= 0)
+            {
+                if (index == 0)
+                {
+                    DeleteFirst();
+                }
+                else if (index == Length - 1)
+                {
+                    Delete();
+                }
+                else
+                {
+                    if(index <= Length / 2)
+                    {
+                    DoubleNode tmp = _root;
+                        for (int i = 1; i < index; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                        tmp.Next = tmp.Next.Next;
+                        tmp.Next.Previous = tmp;
+                    }
+                    else
+                    {
+                    DoubleNode tmp = _tail;
+                        for (int i = Length; i != index; i++)
+                        {
+                            tmp = tmp.Previous;
+                        }
+                        tmp.Previous = tmp.Previous.Previous;
+                        tmp.Previous.Next = tmp;
+                    }
+                    Length--;
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void DeleteByIndex(int index, int count)
+        {
+            if (index >= 0 && count > 0)
+            {
+                if (index == 0)
+                {
+                    DeleteFirst(count);
+                }
+                else if (index == Length - 1)
+                {
+                    Delete(count);
+                }
+                else
+                {
+                    if (index <= Length / 2)
+                    {
+                        DoubleNode tmp = _root;
+                        for (int i = 1; i < index ; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                        for (int i = 0; i != count; i++)
+                        {
+                            tmp.Next = tmp.Next.Next;
+                        }
+                        tmp.Next.Previous = tmp;
+                    }
+                    else
+                    {
+                        DoubleNode tmp = _tail;
+                        for (int i = Length; i != index; i++)
+                        {
+                            tmp = tmp.Previous;
+                        }
+                        for (int i = 0; i !=count -1 ; i++)
+                        {
+                            tmp.Previous = tmp.Previous.Previous;
+                        }
+                        tmp.Previous.Next = tmp;
+                    }
+                    Length -= count;
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+
 
         public override bool Equals(object obj)
         {
@@ -181,5 +483,9 @@ namespace DataStructures
         {
             return base.GetHashCode();
         }
+        /*Удалить по индексу (массив) 
+         *Сортировки возврастиание/убывание
+         *Поиск по значению, мин/макс элемент/индекс 
+        */
     }
 }
